@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"bn.base"},{"l":"bn.core"},{"l":"bn.examples"},{"l":"bn.inference"},{"l":"bn.parser"},{"l":"bn.util"}]
