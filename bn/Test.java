@@ -3,6 +3,7 @@ package bn;
 import bn.*;
 import bn.parser.*;
 import bn.inference.*;
+import bn.core.*;
 
 public class Test {
     public static void main(String[] args) {
