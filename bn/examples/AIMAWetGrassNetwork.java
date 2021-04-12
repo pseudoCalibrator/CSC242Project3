@@ -12,9 +12,8 @@ import bn.core.Distribution;
 import bn.core.Inferencer;
 import bn.core.RandomVariable;
 import bn.inference.EnumerationInferencer;
+import bn.inference.ExactInference;
 import bn.util.ArraySet;
-
-import bn.Inference.ExactInference;
 
 /**
  * The AIMA WetGrass example of a BayesianNetwork (AIMA Fig. 14.12).

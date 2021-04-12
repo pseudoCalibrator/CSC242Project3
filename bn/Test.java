@@ -1,6 +1,6 @@
 import bn.*;
-import parser.*;
-import Inference.*;
+import bn.parser.*;
+import bn.inference.*;
 
 public class Test {
     public static void main(String[] args) {
