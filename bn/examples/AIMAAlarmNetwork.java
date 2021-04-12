@@ -9,9 +9,7 @@ import bn.base.NamedVariable;
 import bn.core.Assignment;
 import bn.core.CPT;
 import bn.core.Distribution;
-import bn.core.Inferencer;
 import bn.core.RandomVariable;
-import bn.inference.EnumerationInferencer;
 import bn.util.ArraySet;
 
 import bn.inference.ExactInference;
