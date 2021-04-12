@@ -1,6 +1,5 @@
 package bn.inference;
 
-import bn.*;
 import bn.core.*;
 import bn.base.Distribution;
 
