@@ -1,3 +1,5 @@
+package bn;
+
 import bn.*;
 import bn.parser.*;
 import bn.inference.*;

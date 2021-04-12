@@ -1,4 +1,4 @@
-package Inference;
+package bn.inference;
 import java.util.List;
 
 import bn.core.BayesianNetwork;
