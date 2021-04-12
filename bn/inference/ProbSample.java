@@ -1,20 +1,21 @@
 package bn.inference;
 
 import bn.*;
+import bn.core.*;
 
 public class ProbSample {
-    public static Object randSample(BayesianNetwork bn, RandomVariable v, Assignment a)
+    public static Value randSample(BayesianNetwork bn, RandomVariable v, Assignment a)
     {
         double rand = Math.random();
         double comp = 0.0;
 
-        for(int i = 0; i < v.getDomain().size(); i++)
+        for(Value i:v.getDomain())
         {
             Assignment copy = a.copy();
-            copy.set(v, v.getDomain.get(i));
-            comp += bn.getProb(v, copy);
+            copy.put(v, i);
+            comp += bn.getProbability(v, copy);
             if(rand <= comp)
-                return v.getDomain().get(i);
+                return i;
         }
 
         return null;

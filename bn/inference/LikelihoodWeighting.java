@@ -33,4 +33,6 @@ public class LikelihoodWeighting
 
         return new weightedAssignment(copy, tempWeight);
     }
+
+    
 }

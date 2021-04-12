@@ -3,6 +3,7 @@ import java.util.List;
 
 import bn.core.BayesianNetwork;
 import bn.core.RandomVariable;
+import bn.core.Value;
 import bn.core.Assignment;
 import bn.base.Distribution;
 
@@ -22,9 +23,9 @@ public class ExactInference {
         else
         {
             double res = 0;
-            for(int ii = 0; ii < rand.getDomain().size(); ii++)
+            for(Value ii:rand.getDomain())
             {
-                a.put(rand, rand.getDomain().get(ii));
+                a.put(rand, ii);
                 Assignment aCopy = a.copy();
                 double probability = bn.getProbability(rand, aCopy);
                 double enum2 = enumAll(bn, aCopy, i+1);
@@ -38,11 +39,11 @@ public class ExactInference {
     public Distribution query(BayesianNetwork bn, RandomVariable rand, Assignment a)
     {
         Distribution done = new Distribution(rand);
-        for(int i = 0; i < rand.getDomain().size(); i++)
+        for(Value i:rand.getDomain())
 		{  
-			Assignment clone_a = a.copy();
-			clone_a.set(rand, rand.getDomain().get(i));
-			done.put(rand.getDomain().get(i), enumAll(bn, clone_a, 0));
+			Assignment copy = a.copy();
+			copy.put(rand, i);
+			done.put(i, enumAll(bn, copy, 0));
 		}
 		done.normalize();
 		return done;
