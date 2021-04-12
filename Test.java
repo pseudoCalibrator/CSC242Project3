@@ -3,7 +3,7 @@ import parser.*;
 import Inference.*;
 
 public class Test {
-    public static void main(Sting[] args) {
+    public static void main(String[] args) {
         // If the first argument is not a number, we're running exact inferencer
         if (!Character.isDigit(args[0].charAt(0))) {
             ExactInference exact = new ExactInference();
