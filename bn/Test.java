@@ -1,8 +1,14 @@
 package bn;
 
-import bn.*;
 import bn.parser.*;
 import bn.inference.*;
+import bn.core.*;
+import bn.base.Assignment;
+
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 public class Test {
     public static void main(String[] args) {
@@ -13,7 +19,12 @@ public class Test {
             if (args[0].endsWith("xml")) {
                 XMLBIFParser xmlparser = new XMLBIFParser();
                 // Read network from the file given
-                BayesianNetwork network = xmlparser.readNetworkFromFile(args[0]);
+                try {
+                    BayesianNetwork network = xmlparser.readNetworkFromFile(args[0]);
+                } catch (IOException | ParserConfigurationException | SAXException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 Assignment assignment = new Assignment();
             }
             // parse bif
