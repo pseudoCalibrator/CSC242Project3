@@ -40,7 +40,7 @@ public class LikelihoodWeighting
         for(Value ii:rand.getDomain())
             done.set(ii, 0.0);
         
-        for(int iii = 0; iii < i; i++)
+        for(int iii = 0; iii < i; iii++)
         {
             weightedAssignment wa = weightedSample(bn, a);
             Assignment tempAssignment = wa.a;
