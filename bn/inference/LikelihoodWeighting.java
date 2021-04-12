@@ -30,5 +30,7 @@ public class LikelihoodWeighting
             else
                 copy.put(rand, ProbSample.randSample(bn, rand, copy));
         }
+
+        return new weightedAssignment(copy, tempWeight);
     }
 }
