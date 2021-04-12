@@ -8,6 +8,9 @@ import bn.inference.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Test {
@@ -37,8 +40,28 @@ public class Test {
             }
             // parse bif
             else {
+
                 BIFParser bifparser;
                 Distribution distribution;
+                try {
+                    bifparser = new BIFParser(new FileInputStream(args[0]));
+                    try {
+                        BayesianNetwork network = bifparser.parseNetwork();
+                        Assignment assignment = new Assignment();
+                        for (int i = 2; i < args.length - 1; i += 2)
+                            // read arguments from command line
+                            assignment.put(network.getVariableByName(args[i]), new StringValue(args[i + 1]));
+
+                        distribution = exact.query(network, network.getVariableByName(args[1]), assignment);
+                        System.out.println(distribution);
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                } catch (FileNotFoundException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
 
             }
         }
