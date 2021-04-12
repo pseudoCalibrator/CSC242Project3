@@ -2,6 +2,9 @@ package bn.inference;
 import java.util.List;
 
 import bn.core.BayesianNetwork;
+import bn.core.RandomVariable;
+import bn.core.Assignment;
+import bn.base.Distribution;
 
 public class ExactInference {
     public double enumAll(BayesianNetwork bn, Assignment a, int i)
@@ -14,7 +17,7 @@ public class ExactInference {
         if(a.containsKey(rand))
         {
             a = a.copy();
-            return bn.getProb(rand, a) * enumAll(bn, a, i+1);
+            return bn.getProbability(rand, a) * enumAll(bn, a, i+1);
         } 
         else
         {
@@ -23,7 +26,7 @@ public class ExactInference {
             {
                 a.put(rand, rand.getDomain().get(ii));
                 Assignment aCopy = a.copy();
-                double probability = bn.getProb(rand, aCopy);
+                double probability = bn.getProbability(rand, aCopy);
                 double enum2 = enumAll(bn, aCopy, i+1);
                 res += probability*enum2;
             }
@@ -39,7 +42,7 @@ public class ExactInference {
 		{  
 			Assignment clone_a = a.copy();
 			clone_a.set(rand, rand.getDomain().get(i));
-			done.put(rand.getDomain().get(i), enumerate_All(bn, clone_a, 0));
+			done.put(rand.getDomain().get(i), enumAll(bn, clone_a, 0));
 		}
 		done.normalize();
 		return done;

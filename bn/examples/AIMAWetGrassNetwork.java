@@ -15,6 +15,8 @@ import bn.inference.EnumerationInferencer;
 import bn.inference.ExactInference;
 import bn.util.ArraySet;
 
+import bn.inference.ExactInference;
+
 /**
  * The AIMA WetGrass example of a BayesianNetwork (AIMA Fig. 14.12).
  * <p>
@@ -106,12 +108,12 @@ public class AIMAWetGrassNetwork extends BayesianNetwork {
 		System.out.println(bn);
 		
 		System.out.println("P(Rain|Sprinkler=true) = <0.3,0.7>");
-		ExactInference exact = new EnumerationInferencer();
+		ExactInference exact = new ExactInference();
 		Assignment e = new bn.base.Assignment();
 		RandomVariable R = bn.getVariableByName("R");
 		RandomVariable S = bn.getVariableByName("S");
 		e.put(S, BooleanValue.TRUE);
-		Distribution dist = exact.query(R, e, bn);
+		Distribution dist = exact.query(bn, R, e);
 		System.out.println(dist);
 	}
 

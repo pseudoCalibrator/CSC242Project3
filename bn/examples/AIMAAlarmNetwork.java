@@ -14,8 +14,7 @@ import bn.core.RandomVariable;
 import bn.inference.EnumerationInferencer;
 import bn.util.ArraySet;
 
-import bn.Inference.ExactInference;
-
+import bn.inference.ExactInference;
 /**
  * The AIMA Burglar Alarm example of a BayesianNetwork (AIMA Fig 14.2).
  * <p>
@@ -116,14 +115,14 @@ public class AIMAAlarmNetwork extends BayesianNetwork {
 		System.out.println(bn);
 		
 		System.out.println("P(B|j,m) = \\alpha <0.00059224,0.0014919> ~= <0.284,0.716>");
-		ExactInference exact = new EnumerationInferencer();
+		ExactInference exact = new ExactInference();
 		Assignment e = new bn.base.Assignment();
 		RandomVariable B = bn.getVariableByName("B");
 		RandomVariable J = bn.getVariableByName("J");
 		RandomVariable M = bn.getVariableByName("M");
 		e.put(J, BooleanValue.TRUE);
 		e.put(M, BooleanValue.TRUE);
-		Distribution dist = exact.query(B, e, bn);
+		Distribution dist = exact.query(bn, B, e);
 		System.out.println(dist);
 	}
 
