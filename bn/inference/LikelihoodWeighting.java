@@ -1,11 +1,11 @@
 package bn.inference;
 
 import bn.*;
-import bn.core.BayesianNetwork;
+import bn.core.*;
 
 public class LikelihoodWeighting
 {
-    private static class weightedAssignment
+    public static class weightedAssignment
     {
         Assignment a;
         double weight;
@@ -24,11 +24,11 @@ public class LikelihoodWeighting
         {
             if(a.containsKey(rand))
             {
-                copy.set(rand, a.get(rand));
-                tempWeight *= bn.getProb(rand, copy);
+                copy.put(rand, a.get(rand));
+                tempWeight *= bn.getProbability(rand, copy);
             }
             else
-                copy.set(v.ProbSample().randomSample(bn, rand, copy));
+                copy.put(rand, ProbSample.randSample(bn, rand, copy));
         }
     }
 }
