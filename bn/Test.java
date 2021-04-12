@@ -1,9 +1,9 @@
 package bn;
 
+import bn.core.BayesianNetwork;
+import bn.base.*;
 import bn.parser.*;
 import bn.inference.*;
-import bn.core.*;
-import bn.base.Assignment;
 
 import org.xml.sax.SAXException;
 
@@ -17,18 +17,28 @@ public class Test {
             ExactInference exact = new ExactInference();
             // parse xml file
             if (args[0].endsWith("xml")) {
-                XMLBIFParser xmlparser = new XMLBIFParser();
+                XMLBIFParser xmlbifparser = new XMLBIFParser();
+                Distribution distribution;
                 // Read network from the file given
                 try {
-                    BayesianNetwork network = xmlparser.readNetworkFromFile(args[0]);
+                    BayesianNetwork network = xmlbifparser.readNetworkFromFile(args[0]);
+                    Assignment assignment = new Assignment();
+                    for (int i = 2; i < args.length - 1; i += 2)
+                        // read arguments from command line
+                        assignment.put(network.getVariableByName(args[i]), new StringValue(args[i + 1]));
+
+                    // take the variables and run exact inference
+                    distribution = exact.query(network, network.getVariableByName(args[1]), assignment);
+                    System.out.println(distribution);
                 } catch (IOException | ParserConfigurationException | SAXException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                Assignment assignment = new Assignment();
             }
             // parse bif
             else {
+                BIFParser bifparser;
+                Distribution distribution;
 
             }
         }
