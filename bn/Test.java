@@ -1,9 +1,9 @@
 package bn;
 
-import bn.*;
 import bn.parser.*;
 import bn.inference.*;
 import bn.core.*;
+import bn.base.Assignment;
 
 public class Test {
     public static void main(String[] args) {
