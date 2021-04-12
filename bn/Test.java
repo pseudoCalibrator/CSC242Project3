@@ -68,13 +68,52 @@ public class Test {
         // If the first argument is a number, we're either doing reject or weight
         // approximate
         else {
+            int sampleAmount = Integer.parseInt(args[0]);
+            int algorithm = args[args.length - 1].equalsIgnoreCase("rejection") ? 1 : 2;
+            LikelihoodWeighting likelihood = new LikelihoodWeighting();
             // parse xml file
-            if (args[0].endsWith("xml")) {
+            if (args[1].endsWith("xml")) {
+                XMLBIFParser xmlbifparser = new XMLBIFParser();
+                Distribution distribution;
+                // Read network from the file given
+                try {
+                    BayesianNetwork network = xmlbifparser.readNetworkFromFile(args[1]);
+                    Assignment assignment = new Assignment();
+                    for (int i = 3; i < args.length - 2; i += 2)
+                        // read arguments from command line
+                        assignment.put(network.getVariableByName(args[i]), new StringValue(args[i + 1]));
 
+                    // if alg is 1, run rejection, otherwise run likelihood
+                    distribution = likelihood.query(network, network.getVariableByName(args[2]), assignment, sampleAmount);
+                    System.out.println(distribution);
+                } catch (IOException | ParserConfigurationException | SAXException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
             // parse bif
             else {
-
+                BIFParser bifparser;
+                Distribution distribution;
+                try {
+                    bifparser = new BIFParser(new FileInputStream(args[0]));
+                    try {
+                        BayesianNetwork network = bifparser.parseNetwork();
+                        Assignment assignment = new Assignment();
+                        for (int i = 3; i < args.length - 2; i += 2)
+                            // read arguments from command line
+                            assignment.put(network.getVariableByName(args[i]), new StringValue(args[i + 1]));
+                        // if alg is 1, run rejection, otherwise run likelihood
+                        distribution = likelihood.query(network, network.getVariableByName(args[2]), assignment, sampleAmount);
+                        System.out.println(distribution);
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                } catch (FileNotFoundException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
         }
     }
