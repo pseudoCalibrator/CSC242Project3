@@ -32,6 +32,11 @@ public class BayesianNetwork implements bn.core.BayesianNetwork, Cloneable {
 		Node(RandomVariable variable) {
 			this.variable = variable;
 		}
+
+		public CPT getCPT()
+		{
+			return cpt;
+		}
 	}
 
 	/**
