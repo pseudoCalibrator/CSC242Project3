@@ -85,10 +85,10 @@ public class Test {
                         assignment.put(network.getVariableByName(args[i]), new StringValue(args[i + 1]));
 
                     // if alg is 1, run rejection, otherwise run likelihood
-                    /*if (algorithm == 1)
+                    if (algorithm == 1)
                         distribution = rejection.query(network, network.getVariableByName(args[2]), assignment,
                                 sampleAmount);
-                    else*/
+                    else
                         distribution = likelihood.query(network, network.getVariableByName(args[2]), assignment,
                                 sampleAmount);
                     System.out.println(distribution);
@@ -110,10 +110,10 @@ public class Test {
                             // read arguments from command line
                             assignment.put(network.getVariableByName(args[i]), new StringValue(args[i + 1]));
                         // if alg is 1, run rejection, otherwise run likelihood
-                        /*if (algorithm == 1)
+                        if (algorithm == 1)
                             distribution = rejection.query(network, network.getVariableByName(args[2]), assignment,
                                     sampleAmount);
-                        else*/
+                        else
                             distribution = likelihood.query(network, network.getVariableByName(args[2]), assignment,
                                     sampleAmount);
                         System.out.println(distribution);
