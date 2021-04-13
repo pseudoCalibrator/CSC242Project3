@@ -15,9 +15,11 @@ public class RejectionSampling {
         List<RandomVariable> list = bn.getVariablesSortedTopologically();
         for(RandomVariable Xi:list)
         {
+            ArrayList<Double> weightList = new ArrayList<>();
             for(Value i:Xi.getDomain())
             {
-                
+                tempAssignment.put(Xi, i);
+                weightList.add(bn.getNodeForVariable(Xi).)
             }
         }
 
