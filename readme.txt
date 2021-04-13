@@ -8,7 +8,11 @@ To build, navigate to the project folder and type "bash run.sh"
 To run exact, type "java -cp "./bin" bn/Test [File Name] [Query Variable] [Names and values of evidence variables]"
 Example:
 java -cp "./bin" bn/Test bn/examples/aima-alarm.xml B J true M true
+java -cp "./bin" bn/Test bn/examples/aima-wet-grass.xml R S true
+
 
 To run approximate, type "java -cp "./bin" bn/Test [Number of samples] [File Name] [Query Variable] [Names and values of evidence variables] [rejection/likelihood]"
 Example:
 java -cp "./bin" bn/Test 1000 bn/examples/aima-alarm.xml B J true M true likelihood
+
+Our program can handle both XMLBIF files and BIF files.
