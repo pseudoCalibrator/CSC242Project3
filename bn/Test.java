@@ -86,7 +86,7 @@ public class Test {
 
                     // if alg is 1, run rejection, otherwise run likelihood
                     if (algorithm == 1)
-                        distribution = rejection.query(network, network.getVariableByName(args[2]), assignment,
+                        distribution = rejection.query((bn.base.BayesianNetwork) network, network.getVariableByName(args[2]), assignment,
                                 sampleAmount);
                     else
                         distribution = likelihood.query(network, network.getVariableByName(args[2]), assignment,
@@ -102,7 +102,7 @@ public class Test {
                 BIFParser bifparser;
                 Distribution distribution;
                 try {
-                    bifparser = new BIFParser(new FileInputStream(args[0]));
+                    bifparser = new BIFParser(new FileInputStream(args[1]));
                     try {
                         BayesianNetwork network = bifparser.parseNetwork();
                         Assignment assignment = new Assignment();
@@ -111,7 +111,7 @@ public class Test {
                             assignment.put(network.getVariableByName(args[i]), new StringValue(args[i + 1]));
                         // if alg is 1, run rejection, otherwise run likelihood
                         if (algorithm == 1)
-                            distribution = rejection.query(network, network.getVariableByName(args[2]), assignment,
+                            distribution = rejection.query((bn.base.BayesianNetwork) network, network.getVariableByName(args[2]), assignment,
                                     sampleAmount);
                         else
                             distribution = likelihood.query(network, network.getVariableByName(args[2]), assignment,
