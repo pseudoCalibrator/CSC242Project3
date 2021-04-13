@@ -71,6 +71,7 @@ public class Test {
             int sampleAmount = Integer.parseInt(args[0]);
             int algorithm = args[args.length - 1].equalsIgnoreCase("rejection") ? 1 : 2;
             LikelihoodWeighting likelihood = new LikelihoodWeighting();
+            RejectionSampling rejection = new RejectionSampling();
             // parse xml file
             if (args[1].endsWith("xml")) {
                 XMLBIFParser xmlbifparser = new XMLBIFParser();
@@ -84,7 +85,12 @@ public class Test {
                         assignment.put(network.getVariableByName(args[i]), new StringValue(args[i + 1]));
 
                     // if alg is 1, run rejection, otherwise run likelihood
-                    distribution = likelihood.query(network, network.getVariableByName(args[2]), assignment, sampleAmount);
+                    if (algorithm == 1)
+                        distribution = rejection.query(network, network.getVariableByName(args[2]), assignment,
+                                sampleAmount);
+                    else
+                        distribution = likelihood.query(network, network.getVariableByName(args[2]), assignment,
+                                sampleAmount);
                     System.out.println(distribution);
                 } catch (IOException | ParserConfigurationException | SAXException e) {
                     // TODO Auto-generated catch block
@@ -104,7 +110,12 @@ public class Test {
                             // read arguments from command line
                             assignment.put(network.getVariableByName(args[i]), new StringValue(args[i + 1]));
                         // if alg is 1, run rejection, otherwise run likelihood
-                        distribution = likelihood.query(network, network.getVariableByName(args[2]), assignment, sampleAmount);
+                        if (algorithm == 1)
+                            distribution = rejection.query(network, network.getVariableByName(args[2]), assignment,
+                                    sampleAmount);
+                        else
+                            distribution = likelihood.query(network, network.getVariableByName(args[2]), assignment,
+                                    sampleAmount);
                         System.out.println(distribution);
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
